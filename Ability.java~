@@ -1,4 +1,4 @@
-class Ability extends Champion{
+class Ability extends Champion {
   private String abilityName;
   
   //This array will store the total magic damage and total attack damage of the ability
@@ -6,14 +6,8 @@ class Ability extends Champion{
   
   //counter may be used for abilities which deal more damage when used in succession
   private int counter;
-  
-  Ability(){
-    //Constructor for creating an ability will accept parameter to set ability name and base damage stats
-    //I.e will populate array for now
-  }
-  
-  
-  public double[] attack(champ, enemyChamp){
+  private int basedamage = 0;
+  public double[] attack(Champion champ, Champion enemyChamp) {
     /*If ability is meant to only output one kind of damage, then the other damage type will be set to -1
      * the attack method will check if either of the base damage fields are negative and will then
      * disregard that damage field for the champion.
@@ -28,17 +22,17 @@ class Ability extends Champion{
     
     // Checks if champion is stunned or not
     // If true, champion will not attack
-    if (champ.isStunned) {
-      boolean atk = false;
-    }
+    //if (champ.isStunned) {
+    //  boolean atk = false;
+    //}
     
     
-    if(basedamge<0){
+    if (basedamage<0){
       //disregard champion specific damage stat
     }
     //add up champion stats to abilities base damages 
     
     //return damage array
-    
+   return damage; 
   }
 }
