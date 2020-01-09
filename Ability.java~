@@ -67,7 +67,7 @@ class Ability extends Champion{
     if(getBaseAttack()<0){
       championAttack=1;
     }
-    else if(getBaseMagic<0){
+    else if(getBaseMagic()<0){
       championMagic=1;
     }
     
