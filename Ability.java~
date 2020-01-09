@@ -1,38 +1,82 @@
-class Ability extends Champion {
+class Ability extends Champion{
+  
   private String abilityName;
   
-  //This array will store the total magic damage and total attack damage of the ability
+  //This array willl store the total magic damage and totla attack damage of the ability
   private double[] damage=new double[2];
   
-  //counter may be used for abilities which deal more damage when used in succession
+  //counter may be used for abilities which deal more damage when used in sucession
   private int counter;
-  private int basedamage = 0;
-  public double[] attack(Champion champ, Champion enemyChamp) {
-    /*If ability is meant to only output one kind of damage, then the other damage type will be set to -1
-     * the attack method will check if either of the base damage fields are negative and will then
-     * disregard that damage field for the champion.
-     * 
-     * i.e
-     * if the ability is meant to only do magic damage then the field for base attack damage will be -1, and
-     * the attack method will then disregard that champions attack damage when calculating the damage
-     * output of the ability
-     */
+  
+  private int targetNum;
+  private int damageSelection;
+  private double boost;
+  private double amplify;
     
-    boolean atk = true;
+  //private boolean combo;
     
-    // Checks if champion is stunned or not
-    // If true, champion will not attack
-    //if (champ.isStunned) {
-    //  boolean atk = false;
-    //}
+  
+  Ability(String name, double attack, double magic){
     
+    abilityName=name;
+    damage[0]=attack;
+    damage[1]=magic;
+  }
+  
+  Ability(String name, double attack, double magic,int targetNum, int damageSelection ){
     
-    if (basedamage<0){
-      //disregard champion specific damage stat
+    abilityName=name;
+    damage[0]=attack;
+    damage[1]=magic;
+    this.targetNum=targetNum;
+    this.damageselection=damagSelection;
+  }
+  
+  
+  
+  //Getters
+  public String getName(){
+    return abilityName;
+  }
+  
+  public double getBaseMagic(){
+    return damage[1];
+  }
+  
+  public double getBaseAttack(){
+    return damage[0];
+  }
+    
+  
+  //Setters
+  public void setBaseMagic(double baseMagic){
+    damage[1]=baseMagic;
+  }
+  
+  public void setBaseAttack(double baseAttack){
+    damage[0]=baseAttack;
+  }
+    
+  //Methods
+  
+  public double[] attack(){
+    
+    double championAttack=//get champino attack damge stat
+    double championMagic=//get champion magic damage stat
+      
+    if(getBaseAttack()<0){
+      championAttack=1;
     }
-    //add up champion stats to abilities base damages 
+    else if(getBaseMagic<0){
+      championMagic=1;
+    }
     
-    //return damage array
-   return damage; 
+    damage[0]+=championAttack;
+    damage[1]+=championMagic;
+    
+    return damage;
   }
 }
+
+
+
