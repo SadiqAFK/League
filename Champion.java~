@@ -22,9 +22,11 @@ public class Champion {
   // Initialize private booleans (effects):
   private boolean stunned = false;
   private boolean poisoned = false;
+  
   public Champion() {
     
   }
+  
   public Champion(String champName, String champTribe) {
     name = champName;
     tribe = champTribe;
