@@ -7,9 +7,7 @@ class Ability extends Champion{
   
   //counter may be used for abilities which deal more damage when used in sucession
   private int counter;
-  
-  private int targetNum;
-  private int damageSelection;
+
   private double boost;
   private double amplify;
     
@@ -22,16 +20,6 @@ class Ability extends Champion{
     damage[0]=attack;
     damage[1]=magic;
   }
-  
-  Ability(String name, double attack, double magic,int targetNum, int damageSelection ){
-    
-    abilityName=name;
-    damage[0]=attack;
-    damage[1]=magic;
-    this.targetNum=targetNum;
-    this.damageselection=damagSelection;
-  }
-  
   
   
   //Getters
@@ -59,16 +47,17 @@ class Ability extends Champion{
     
   //Methods
   
-  public double[] attack(){
+  public double[] attack(Champion champion){
     
-    double championAttack=//get champino attack damge stat
-    double championMagic=//get champion magic damage stat
+    double championAttack = champion.getAtkDmg();
+    double championMagic = champion.getMagicDmg();
       
-    if(getBaseAttack()<0){
-      championAttack=1;
+    if(getBaseAttack() < 0){
+      championAttack = 1;
     }
+    
     else if(getBaseMagic()<0){
-      championMagic=1;
+      championMagic = 1;
     }
     
     damage[0]+=championAttack;

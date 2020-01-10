@@ -1,6 +1,6 @@
-/*import java.util.*;
+import java.util.*;
 
-class Tribe extends Ability {
+class Freljord extends Ability {
   protected boolean freeze;
   
   public Freljord(String abilityName, double attack, double magic, boolean frozen) {
@@ -8,7 +8,6 @@ class Tribe extends Ability {
     freeze = frozen;
     
   }
-   
 
   public boolean autoEmpower(Ability auto) {
     Random randomGen = new Random();
@@ -24,4 +23,3 @@ class Tribe extends Ability {
     return freeze;
   }
 }
-*/

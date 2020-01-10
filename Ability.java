@@ -1,6 +1,7 @@
 class Ability extends Champion{
   
   private String abilityName;
+  private double manaCost;
   
   //This array willl store the total magic damage and totla attack damage of the ability
   private double[] damage=new double[2];
@@ -13,7 +14,6 @@ class Ability extends Champion{
     
   //private boolean combo;
     
-  
   Ability(String name, double attack, double magic){
     
     abilityName=name;

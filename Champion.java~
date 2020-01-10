@@ -7,17 +7,17 @@ public class Champion {
   // Initialize protected int fields (stats):
   protected static String name;
   protected static String tribe;
-  protected int health;
-  protected int atkSpd;
-  protected int atkDmg;
-  protected int armor;
-  protected int crit;
-  protected int magicDmg;
-  protected int magicRes;
-  protected int mana;
-  protected int manaReg;
-  protected int moveSpd;
-  protected int tenacity;
+  protected double health;
+  protected double atkSpd;
+  protected double atkDmg;
+  protected double armor;
+  protected double crit;
+  protected double magicDmg;
+  protected double magicRes;
+  protected double mana;
+  protected double manaReg;
+  protected double moveSpd;
+  protected double tenacity;
   
   // Initialize private booleans (effects):
   private boolean stunned = false;
@@ -32,47 +32,47 @@ public class Champion {
     tribe = champTribe;
   } 
   
-  public int getHealth() {
+  public double getHealth() {
     return health;
   }
   
-  public int getAtkSpd() {
+  public double getAtkSpd() {
     return atkSpd;
   }
   
-  public int getAtkDmg() {
+  public double getAtkDmg() {
     return atkDmg;
   }
   
-  public int getArmor() {
+  public double getArmor() {
     return armor;
   }
   
-  public int getCrit() {
+  public double getCrit() {
     return crit;
   }
   
-  public int getMagicDmg() {
+  public double getMagicDmg() {
     return magicDmg;
   }
   
-  public int getMagicRes() {
+  public double getMagicRes() {
     return magicRes;
   }
   
-  public int getMana() {
+  public double getMana() {
     return mana;
   }
   
-  public int getManaReg() {
+  public double getManaReg() {
     return manaReg;
   }
   
-  public int getMoveSpd() {
+  public double getMoveSpd() {
     return moveSpd;
   }
   
-  public int getTenacity() {
+  public double getTenacity() {
     return tenacity;
   }
   
@@ -148,4 +148,7 @@ public class Champion {
     stunned = false;
   }
   
+  public String toString() {
+    return name + ", " +tribe;
+  }
 }

@@ -80,47 +80,47 @@ public class Champion {
     return tribe;
   }
 
-  public void setHealth(int newHealth) {
+  public void setHealth(double newHealth) {
     health = newHealth;
   }
   
-  public void setAtkSpd(int newAtkSpd) {
+  public void setAtkSpd(double newAtkSpd) {
     atkSpd = newAtkSpd;
   }
   
-  public void setAtkDmg(int newAtkDmg) {
+  public void setAtkDmg(double newAtkDmg) {
     atkDmg = newAtkDmg;
   }
   
-  public void setArmor(int newArmor) {
+  public void setArmor(double newArmor) {
     armor = newArmor;
   }
   
-  public void setCrit(int newCrit) {
+  public void setCrit(double newCrit) {
     crit = newCrit;
   }
   
-  public void setMagicDmg(int newMagicDmg) {
+  public void setMagicDmg(double newMagicDmg) {
     magicDmg = newMagicDmg;
   }
   
-  public void setMagicRes(int newMagicRes) {
+  public void setMagicRes(double newMagicRes) {
     magicRes = newMagicRes;
   }
   
-  public void setMana(int newMana) {
+  public void setMana(double newMana) {
     mana = newMana;
   }
   
-  public void setManaReg(int newManaReg) {
+  public void setManaReg(double newManaReg) {
     manaReg = newManaReg;
   }
   
-  public void setMoveSpd(int newMoveSpd) {
+  public void setMoveSpd(double newMoveSpd) {
     moveSpd = newMoveSpd;
   }
   
-  public void setTenacity(int newTenacity) {
+  public void setTenacity(double newTenacity) {
     tenacity = newTenacity;
   }
   
@@ -149,6 +149,10 @@ public class Champion {
   }
   
   public String toString() {
-    return name + ", " +tribe;
+    return "Name: " + name + "\nTribe: " +tribe + "\nHealth: " + health
+           + "\nAttack Speed: " + atkSpd + "\nAttack Damage: " + atkDmg + 
+           "\nArmor: " + armor + "\nCrit: " + crit + "\nMagic Damage: " + magicDmg
+           + "\nMagic Res: " + magicRes + "\nMana: " + mana + "\nMana Regen: " + manaReg
+           + "\nMove Speed: " + moveSpd + "\nTenacity: " + tenacity;
   }
 }
