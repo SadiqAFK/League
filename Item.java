@@ -4,7 +4,7 @@ import java.io.*;
 class Item {
   //Checls if item has been used already
   boolean used=false;
-  
+
   //Name of item
   private String name;
   

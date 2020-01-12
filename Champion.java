@@ -7,6 +7,15 @@ public class  Champion {
   // Initialize protected int fields (stats):
   protected static String name;
   protected static String tribe;
+
+  //Array to stor names of all stats
+  private String[] statNames = {"Health","Attack Speed","Attack Damage","Armor","Crit","Magic Damage","Magic Resistance",
+  "Mana","Mana Regen","Movement Speed","Tenacity"};
+
+  //Array to store values of all coresponding stats
+  private double[] statValues = new double[11];
+
+  /*
   protected double health;
   protected double atkSpd;
   protected double atkDmg;
@@ -18,6 +27,7 @@ public class  Champion {
   protected double manaReg;
   protected double moveSpd;
   protected double tenacity;
+   */
   
   // Initialize private booleans (effects):
   private boolean stunned = false;
@@ -31,99 +41,121 @@ public class  Champion {
     name = champName;
     tribe = champTribe;
   } 
-  
+
+  //Getters
+
   public double getHealth() {
-    return health;
+    return statValues[0];
   }
   
   public double getAtkSpd() {
-    return atkSpd;
+    return statValues[1];
   }
   
   public double getAtkDmg() {
-    return atkDmg;
+    return statValues[2];
   }
   
   public double getArmor() {
-    return armor;
+    return statValues[3];
   }
   
   public double getCrit() {
-    return crit;
+    return statValues[4];
   }
   
   public double getMagicDmg() {
-    return magicDmg;
+    return statValues[5];
   }
   
   public double getMagicRes() {
-    return magicRes;
+    return statValues[6];
   }
   
   public double getMana() {
-    return mana;
+    return statValues[7];
   }
   
   public double getManaReg() {
-    return manaReg;
+    return statValues[8];
   }
   
   public double getMoveSpd() {
-    return moveSpd;
+    return statValues[9];
   }
   
   public double getTenacity() {
-    return tenacity;
+    return statValues[10];
   }
   
   public String getTribe() {
     return tribe;
   }
 
+  public String[] getStatNames(){
+    return statNames;
+  }
+
+  public double[] getStatValues(){
+    return statValues;
+  }
+
+  //Setters
+
   public void setHealth(double newHealth) {
-    health = newHealth;
+    statValues[0] = newHealth;
   }
   
   public void setAtkSpd(double newAtkSpd) {
-    atkSpd = newAtkSpd;
+    statValues[1] = newAtkSpd;
   }
   
   public void setAtkDmg(double newAtkDmg) {
-    atkDmg = newAtkDmg;
+    statValues[2] = newAtkDmg;
   }
   
   public void setArmor(double newArmor) {
-    armor = newArmor;
+    statValues[3] = newArmor;
   }
   
   public void setCrit(double newCrit) {
-    crit = newCrit;
+    statValues[4] = newCrit;
   }
   
   public void setMagicDmg(double newMagicDmg) {
-    magicDmg = newMagicDmg;
+    statValues[5] = newMagicDmg;
   }
   
   public void setMagicRes(double newMagicRes) {
-    magicRes = newMagicRes;
+    statValues[6] = newMagicRes;
   }
   
   public void setMana(double newMana) {
-    mana = newMana;
+    statValues[7] = newMana;
   }
   
   public void setManaReg(double newManaReg) {
-    manaReg = newManaReg;
+    statValues[8] = newManaReg;
   }
   
   public void setMoveSpd(double newMoveSpd) {
-    moveSpd = newMoveSpd;
+    statValues[9] = newMoveSpd;
   }
   
   public void setTenacity(double newTenacity) {
-    tenacity = newTenacity;
+    statValues[10] = newTenacity;
   }
-  
+
+
+  public void setStatValues(double[] newStats){
+
+    for(int i=0;i<newStats.length;i++){
+      statValues[i]=newStats[i];
+    }
+  }
+
+  //Adding/Removing status effects
+
   public boolean isStunned(boolean stunned) {
     return stunned;
   }
@@ -147,12 +179,15 @@ public class  Champion {
   public void removeStun(boolean stunned) {
     stunned = false;
   }
-  
+
+  //Methods
+
   public String toString() {
-    return "Name: " + name + "\nTribe: " +tribe + "\nHealth: " + health
-           + "\nAttack Speed: " + atkSpd + "\nAttack Damage: " + atkDmg + 
-           "\nArmor: " + armor + "\nCrit: " + crit + "\nMagic Damage: " + magicDmg
-           + "\nMagic Res: " + magicRes + "\nMana: " + mana + "\nMana Regen: " + manaReg
-           + "\nMove Speed: " + moveSpd + "\nTenacity: " + tenacity;
+    return "Name: " + name + "\nTribe: " +tribe + "\nHealth: " + statValues[0]
+           + "\nAttack Speed: " + statValues[1] + "\nAttack Damage: " + statValues[2] +
+           "\nArmor: " + statValues[3] + "\nCrit: " + statValues[4] + "\nMagic Damage: " + statValues[5]
+           + "\nMagic Res: " + statValues[6] + "\nMana: " + statValues[7] + "\nMana Regen: " + statValues[8]
+           + "\nMove Speed: " + statValues[9] + "\nTenacity: " + statValues[10];
   }
 }
+
