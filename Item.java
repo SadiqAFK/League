@@ -8,8 +8,8 @@ class Item {
   //Name of item
   private String name;
   
-  //This 2D array will store the names of the stats to be modified, hohw much they will modified by, and how much they will be amplified by
-  //Some stats may just be increased by a set aamount, while other may be amplifiedd by a factor(multiplied)
+  //This 2D array will store the names of the stats to be modified, how much they will modified by, and how much they will be amplified by
+  //Some stats may just be increased by a set amount, while other may be amplified by a factor(multiplied)
   String toChange[][]=new String[2][3];
   
   Item(String itemName)throws Exception{

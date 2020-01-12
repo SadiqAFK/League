@@ -3,7 +3,7 @@
 
 import java.util.*;
 
-public class Champion {
+public class  Champion {
   // Initialize protected int fields (stats):
   protected static String name;
   protected static String tribe;
