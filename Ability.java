@@ -12,11 +12,9 @@ class Ability extends Champion{
   private double boost;
   private double amplify;  
   
-  Ability(String name, double attack, double magic, double mana){
+  Ability(String name){
     abilityName=name;
-    manaCost = mana;
-    damage[0]=attack;
-    damage[1]=magic;
+    ganerateValues(abilityName);
   }
   
   //Getters
@@ -43,6 +41,10 @@ class Ability extends Champion{
   
   public void setBaseAttack(double baseAttack){
     damage[0]=baseAttack;
+  }
+
+  public void setManaCost(double cost){
+    manaCost=cost;
   }
   
   //Methods
@@ -80,6 +82,30 @@ class Ability extends Champion{
     
     return damage; // Returns damage given to enemy champion
   }
+
+  private void generateValues(String name){
+
+    File file = new File("Abilities.csv");
+    BufferedReader reader = new BufferedReader(new FileReader(file));
+
+    //Used to help read the csv file
+    String helper;
+
+    while((helper=reader.readLine())!=null){
+
+      if(helper.split(",")[0].equals(name)){
+
+        //Populate damage array with basse stats from file
+        setBaseAttack(helper.split(",")[1]);
+        setBaseMagic(helper.split(",")[2]);
+        //Set mana cost of ability form file values
+        setManaCost(helper.split(",")[3]);
+
+      }
+    }
+
+  }
+
 }
 
 

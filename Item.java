@@ -96,18 +96,33 @@ class Item {
   }
   
   //Testingngngngnggnngnngngngnggn  
-  //Delete when submiting nigga               
+  //Delete when submiting dkedmadklmawlkmdaklmad
   public void print(){
     
-    for(int i=0;i<toChange.length;i++){
-      for(int j=0;j<toChange[i].length;j++){
-        System.out.print(toChange[i][j]);
-      }
-      System.out.println();
+    for(int i=0;i<toChange.length;i++) {
+        for (int j = 0; j < toChange[i].length; j++) {
+            System.out.print(toChange[i][j]);
+        }
+        System.out.println();
     }
-    
-    
-    
+  }
+
+  public String toString(){
+
+      String toPrint;
+
+      //Prints out first stat and item name
+      toPrint += this.getName();
+      toPrint +="\n"+ toChange[0][0] + ": \n" ;
+      toPrint +="+" toChange[0][1] +"\n" + "x" + toChange[0][2];
+
+      if(!toChange[1][1].equals("0")){
+
+          toPrint += "\n" + toChange[1][0] +":";
+          toPrint += "\n" + "+" + toChange[1][1] + "\n" + "x" + toChange[1][2];
+
+      }
+    return toPrint;
   }
   
   
