@@ -2,14 +2,28 @@ import java.util.*;
 import java.io.*;
 
 // Main method, runs the game
-class leagueMain {
+class LeagueMain {
  
-  private static ArrayList<Champion> championList = new ArrayList<Champion>();
-  private static ArrayList<Champion> player1List = new ArrayList<Champion>();
-  private static ArrayList<Champion> player2List = new ArrayList<Champion>();
+  static ArrayList<Champion> championList = new ArrayList<Champion>();
+  static ArrayList<Champion> player1List = new ArrayList<Champion>();
+  static ArrayList<Champion> player2List = new ArrayList<Champion>();
+  static int player1Size = 0;
+  static int player2Size = 0;
+  boolean playerTurn = false;
+  static int number = 0;
   
   public static void main(String[] args) throws Exception {
-    champIo(); // Reads the csv
+    Scanner reader = new Scanner(System.in);
+    System.out.println("Type PVP or PVC");
+    String choice = reader.nextLine();
+    if (choice.equalsIgnoreCase("PVC")) {
+      champIo(); // Reads the csv
+      while (player1Size < 5 && player2Size < 5) {
+        System.out.println("Type the corresponding number to the champion you want:");
+        int select = reader.nextInt();   
+        championPicker(select, player1List);
+      }
+    }
   }
   
   public static void champIo() throws Exception {
@@ -44,8 +58,8 @@ class leagueMain {
         
         // adds champion to list
         championList.add(champion);
-        System.out.println(champion);
-        System.out.println(Arrays.toString(row));
+        number++;
+        System.out.println(number + ". " + champion);
       }
     }
     
@@ -54,12 +68,9 @@ class leagueMain {
       e.printStackTrace();
     } 
   }
-  
-  public static void championPicker() {
-    Scanner picker = new Scanner(System.in);
-    
-    for (int i = 0; i < 15; i++) {
-      championList.get(0).getName();
-    }
+ 
+  public static void championPicker(int select, ArrayList<Champion> playerList) {
+    playerList.add(championList.get(select - 1));
+    System.out.println(playerList.get(0));
   }
 }
