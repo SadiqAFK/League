@@ -1,6 +1,8 @@
 // Creators: Sadiq Hussain, Nathan Chung
 // This is the champion class used to define the traits of a champion
 
+package League;
+
 import java.util.*;
 
 public class  Champion {

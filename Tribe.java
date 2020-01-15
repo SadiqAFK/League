@@ -1,3 +1,5 @@
+package League;
+
 import java.util.*;
 
 class Tribe {

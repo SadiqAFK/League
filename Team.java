@@ -1,4 +1,7 @@
 //This class is used to make teams for actual gameplay
+
+package League;
+
 import java.util.*;
 import java.io.*;
 

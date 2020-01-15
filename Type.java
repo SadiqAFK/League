@@ -1,3 +1,5 @@
+package League;
+
 import java.util.*;
 
 public class Type extends Ability {
