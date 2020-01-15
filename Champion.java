@@ -10,24 +10,11 @@ public class  Champion {
 
   //Array to stor names of all stats
   private String[] statNames = {"Health","Attack Speed","Attack Damage","Armor","Crit","Magic Damage","Magic Resistance",
-  "Mana","Mana Regen","Movement Speed","Tenacity"};
+  "Mana","Mana Regen","Movement Speed","Tenacity","maxHealth","maxMana"};
 
   //Array to store values of all coresponding stats
-  private double[] statValues = new double[11];
+  private double[] statValues = new double[13];
 
-  /*
-  protected double health;
-  protected double atkSpd;
-  protected double atkDmg;
-  protected double armor;
-  protected double crit;
-  protected double magicDmg;
-  protected double magicRes;
-  protected double mana;
-  protected double manaReg;
-  protected double moveSpd;
-  protected double tenacity;
-   */
   
   // Initialize private booleans (effects):
   private boolean stunned = false;
@@ -87,7 +74,15 @@ public class  Champion {
   public double getTenacity() {
     return statValues[10];
   }
-  
+
+  public double getMaxHealth(){
+    return statValues[12];
+  }
+
+  public double getMaxMana(){
+    return statValues[13];
+  }
+
   public String getTribe() {
     return tribe;
   }
@@ -103,7 +98,12 @@ public class  Champion {
   //Setters
 
   public void setHealth(double newHealth) {
-    statValues[0] = newHealth;
+    //Make ssure health does not exceed max health
+    if (newHealth > this.getMaxHealth()) {
+      statValues[0] = this.getMaxHealth();
+    } else {
+      statValues[0] = newHealth;
+    }
   }
   
   public void setAtkSpd(double newAtkSpd) {
@@ -130,8 +130,14 @@ public class  Champion {
     statValues[6] = newMagicRes;
   }
   
-  public void setMana(double newMana) {
-    statValues[7] = newMana;
+  public void setMana(double newMana)  {
+
+    //if new mana exceeds the max then set it to max
+    if(newMana > this.getMaxMana()){
+      statValues[7] = this.getMaxMana();
+    }else {
+      statValues[7] = newMana;
+     }
   }
   
   public void setManaReg(double newManaReg) {
@@ -144,6 +150,14 @@ public class  Champion {
   
   public void setTenacity(double newTenacity) {
     statValues[10] = newTenacity;
+  }
+
+  public void setMaxHealth(double maxHealth){
+    statValues[11]=maxHealth
+  }
+
+  public void setMaxMana(double maxMana){
+    statValues[12]=maxMana;
   }
 
 
@@ -183,11 +197,21 @@ public class  Champion {
   //Methods
 
   public String toString() {
-    return "Name: " + name + "\nTribe: " +tribe + "\nHealth: " + statValues[0]
+    return "Name: " + name + "\nTribe: " +tribe + "\nHealth: " + statValues[12]
            + "\nAttack Speed: " + statValues[1] + "\nAttack Damage: " + statValues[2] +
            "\nArmor: " + statValues[3] + "\nCrit: " + statValues[4] + "\nMagic Damage: " + statValues[5]
-           + "\nMagic Res: " + statValues[6] + "\nMana: " + statValues[7] + "\nMana Regen: " + statValues[8]
+           + "\nMagic Res: " + statValues[6] + "\nMana: " + statValues[13] + "\nMana Regen: " + statValues[8]
            + "\nMove Speed: " + statValues[9] + "\nTenacity: " + statValues[10];
+  }
+
+  //Regenerates mana as required
+  public void regen() {
+    setMana(getMana()+getManaReg());
+
+    //Makes sure the champion dosent surpass their maximum mana
+    if(getMana()>getMaxMana()){
+      setMana(getMaxMana());
+  }
   }
 }
 
