@@ -213,5 +213,12 @@ public class  Champion {
       setMana(getMaxMana());
   }
   }
+
+  //Checks if champion is dead
+  public boolean isDead() {
+    return this.getHealth()<=0;
+  }
+  }
 }
+
 
