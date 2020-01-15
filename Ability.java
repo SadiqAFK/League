@@ -1,11 +1,11 @@
-class Ability extends Champion{
+class Ability {
   
   private String abilityName;
   private double manaCost;
   
   //This array willl store the total magic damage and total attack damage of the ability
   // Slot 0 is ad, slot 1 is md
-  private double[] damage = new double[2];
+  private double[] baseStats = new double[2];
   
   //counter may be used for abilities which deal more damage when used in sucession
   private int counter;
@@ -23,11 +23,11 @@ class Ability extends Champion{
   }
   
   public double getBaseMagic(){
-    return damage[1];
+    return baseStats[1];
   }
   
   public double getBaseAttack(){
-    return damage[0];
+    return baseStats[0];
   }
   
   public double getManaCost() {
@@ -36,11 +36,11 @@ class Ability extends Champion{
   
   //Setters
   public void setBaseMagic(double baseMagic){
-    damage[1]=baseMagic;
+    baseStats[1]=baseMagic;
   }
   
   public void setBaseAttack(double baseAttack){
-    damage[0]=baseAttack;
+    baseStats[0]=baseAttack;
   }
 
   public void setManaCost(double cost){
@@ -49,23 +49,27 @@ class Ability extends Champion{
   
   //Methods
   
-  public double[] attack(Champion champion, Champion enemyChamp, Ability ability){
+  public void attack(Champion champion, Champion enemyChamp){
     
     // Champion physical damage is champions ad + ability base ad
-    double championAttack = champion.getAtkDmg() + ability.getBaseAttack();
+    double championAttack = champion.getAtkDmg() ;
     
     // Champion magical damage is champions magic d + ability base magic d
-    double championMagic = champion.getMagicDmg() + ability.getBaseMagic();
+    double championMagic = champion.getMagicDmg() ;
     
-    // If champions attack is less than 0, make it 1
-    if(champion.getAtkDmg() + ability.getBaseAttack() < 0){
+    // If base stat is less than 0 then make champion corresponding stat to 1
+    if(this.getBaseAttack() < 0){
       championAttack = 1;
     }
     
-    else if(champion.getAtkDmg() + ability.getBaseAttack() < 0){
+    else if(this.getBaseMagic() < 0){
       championMagic = 1;
     }
-    
+
+    //Addidng base ability stats to champion stats
+    championAttack += this.getBaseAttack();
+    championMagic += this.getBaseMagic();
+
     // Armor calculation, finds ad damage multiplier factor
     double percentArmor = 100 / (100 + enemyChamp.getArmor());
     
@@ -75,12 +79,15 @@ class Ability extends Champion{
     // Calculates damage factors into both types of damage
     championAttack = championAttack * percentArmor;
     championMagic = championMagic * percentRes;
-    
-    // Adds champion attacks to damage array
-    damage[0] = championAttack;
-    damage[1] = championMagic;
-    
-    return damage; // Returns damage given to enemy champion
+
+    //value to stor entire damage dealt
+    double damageDealt = championAttack + championMagic;
+
+    //Takes away health from enemy champion based on damage dealt
+    enemyChamp.setHealth(enemyChamp.getHealth() - damageDealt);
+
+    //Takes mana away from attacking champion based on mana cost of ability
+    champion.setMana(champion.getMana() - manaCost);
   }
 
   private void generateValues(String name){
@@ -98,7 +105,7 @@ class Ability extends Champion{
         //Populate damage array with basse stats from file
         setBaseAttack(helper.split(",")[1]);
         setBaseMagic(helper.split(",")[2]);
-        //Set mana cost of ability form file values
+        //Set mana cost of ability from file values
         setManaCost(helper.split(",")[3]);
 
       }
