@@ -7,11 +7,15 @@ class Team {
   private ArrayList<Item> itemPool = new ArrayList (Item);
   
   private String playerName;
-  
+
+
   
   
   Team(String name){
     playerName=name;
+
+    //fills item pool for team once team is made
+    this.fillItemPool();
   }
   
   
@@ -20,8 +24,8 @@ class Team {
   }
   
   
-  
-  public void fillItemPool(){
+  //Adds a copy of each item to a bank to be used
+  private void fillItemPool(){
     File file =new File("League items.csv");
     BufferedReader reader = new BufferredReader(new FileReader(file));
     
