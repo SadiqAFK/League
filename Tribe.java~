@@ -1,20 +1,24 @@
 import java.util.*;
 
-class Tribe {
+class Tribe extends Ability {
   private String FRELJORD = "Freljord";
   private String ZAUN = "Zaun";
   private String IONIA = "Ionia";
   private String PILTOVER = "Piltover";
   private String DEMACIA = "Demacia";
   private String NOXUS = "Noxus";
- 
-  private static int killCounter; // Kill counter
   
   private boolean freeze; // Freljord
   private boolean poison; // Zaun
   
+  // Tribe constructor, helps to define variables
+  public Tribe(String abilityName, double attack, double magic, double mana) {
+    super(abilityName, attack, magic, mana);
+  }
+  
   // Applies the noxian trait
-  public double noxusTrait(Champion champion, Champion enemyChamp) {
+  public double noxusTrait(Champion champion, Ability ability) {
+    int counter; // Kill counter
     double damageAmp = 0; // Damage amplification based off kills
     
     return damageAmp;
@@ -23,7 +27,7 @@ class Tribe {
   // Applies the ionian effect
   public double ionianTrait(Champion champion, Ability ability) {
     
-    double lifesteal = 0; // Heals ionians for 10% of the damage they deal
+    double lifesteal; // Heals ionians for 10% of the damage they deal
     champion.setHealth(champion.getHealth() - 100); // Decreases the total health of ionians by 100
     
     lifesteal = (ability.getBaseAttack() + ability.getBaseMagic() * 0.1);

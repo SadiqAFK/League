@@ -31,6 +31,10 @@ public class  Champion {
 
   //Getters
 
+  public String getName() {
+    return name;
+  }
+  
   public double getHealth() {
     return statValues[0];
   }
@@ -153,7 +157,7 @@ public class  Champion {
   }
 
   public void setMaxHealth(double maxHealth){
-    statValues[11]=maxHealth
+    statValues[11]=maxHealth;
   }
 
   public void setMaxMana(double maxMana){
@@ -217,7 +221,6 @@ public class  Champion {
   //Checks if champion is dead
   public boolean isDead() {
     return this.getHealth()<=0;
-  }
   }
 }
 

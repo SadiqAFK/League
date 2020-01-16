@@ -3,10 +3,11 @@ import java.io.*;
 
 // Main method, runs the game
 class LeagueMain {
- 
+  
   static ArrayList<Champion> championList = new ArrayList<Champion>();
   static ArrayList<Champion> player1List = new ArrayList<Champion>();
   static ArrayList<Champion> player2List = new ArrayList<Champion>();
+  
   static int player1Size = 0;
   static int player2Size = 0;
   boolean playerTurn = false;
@@ -16,12 +17,49 @@ class LeagueMain {
     Scanner reader = new Scanner(System.in);
     System.out.println("Type PVP or PVC");
     String choice = reader.nextLine();
-    if (choice.equalsIgnoreCase("PVC")) {
+    if (choice.equalsIgnoreCase("PVP")) {
       champIo(); // Reads the csv
-      while (player1Size < 5 && player2Size < 5) {
-        System.out.println("Type the corresponding number to the champion you want:");
-        int select = reader.nextInt();   
-        championPicker(select, player1List);
+      
+      while (player2List.size() < 3) {
+        System.out.println("Type the corresponding number of the champion you want:");
+        int select = reader.nextInt();
+        championPicker(select, player1List, championList);
+        
+        int select2 = reader.nextInt();   
+        championPicker(select2, player2List, championList);
+        
+        System.out.println("Player 1 Team:");
+        for(int i = 0; i < player1List.size(); i++){
+          System.out.println("Champion: " + i + ": " + player1List.get(i).getName());
+        }
+        
+        System.out.println("Player 2 Team:");
+        for(int i = 0 ; i< player2List.size(); i++){
+          System.out.println("Champion " + i + ": " + player2List.get(i).getName());
+        }
+      }
+    }
+    else if (choice.equalsIgnoreCase("PVC")) {
+      champIo(); // Reads the csv
+      Random randomgen = new Random();
+      
+      while (player2List.size() < 3) {
+        System.out.println("Type the name of the champion you want:");
+        int select = reader.nextInt();  
+        championPicker(select, player1List, championList);
+        
+        int randomint = randomgen.nextInt(championList.size());
+        championPicker(randomint, player2List, championList);
+        
+        System.out.println("Player 1 Team:");
+        for(int i = 0; i < player1List.size(); i++){
+          System.out.println("Champion: " + i + ": " + player1List.get(i).getName());
+        }
+        
+        System.out.println("Player 2 Team:");
+        for(int i = 0 ; i< player2List.size(); i++){
+          System.out.println("Champion " + i + ": " + player2List.get(i).getName());
+        }
       }
     }
   }
@@ -58,8 +96,8 @@ class LeagueMain {
         
         // adds champion to list
         championList.add(champion);
-        number++;
         System.out.println(number + ". " + champion);
+        number++;
       }
     }
     
@@ -68,9 +106,30 @@ class LeagueMain {
       e.printStackTrace();
     } 
   }
- 
-  public static void championPicker(int select, ArrayList<Champion> playerList) {
-    playerList.add(championList.get(select - 1));
-    System.out.println(playerList.get(0));
+  
+  public static void championPicker(int select, ArrayList<Champion> playerList, ArrayList<Champion> championList) {
+    playerList.add(championList.get(select));
+    championList.remove(select);
+    championList.trimToSize();
   }
+  
+  /*
+   public static void trait(Champion champion, Ability ability) {
+   if (champion.getTrait().equals("Noxus")) {
+   tribe.noxusTrait(champion);
+   }
+   //else if (champion.getTrait().equals("Demacia")) {
+   //  tribe.demacianTrait(champion);
+   //}
+   else if (champion.getTrait().equals("Ionian")) {
+   tribe.ionianTrait(champion);
+   }
+   else if (champion.getTrait().equals("Freljord")) {
+   tribe.applyTrait(champion);
+   }
+   else if (champion.getTrait().equals("Zaun")) {
+   tribe.applyTrait(champion);
+   }
+   }
+   */
 }

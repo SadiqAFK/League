@@ -14,7 +14,7 @@ class Ability {
   
   Ability(String name){
     abilityName=name;
-    ganerateValues(abilityName);
+    generateValues(abilityName);
   }
   
   //Getters

@@ -114,7 +114,7 @@ class Item {
       //Prints out first stat and item name
       toPrint += this.getName();
       toPrint +="\n"+ toChange[0][0] + ": \n" ;
-      toPrint +="+" toChange[0][1] +"\n" + "x" + toChange[0][2];
+      //toPrint +="+" toChange[0][1] +"\n" + "x" + toChange[0][2];
 
       if(!toChange[1][1].equals("0")){
 
