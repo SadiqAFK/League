@@ -2,7 +2,7 @@ import java.util.*;
 import java.io.*;
 
 class Item {
-  //Checls if item has been used already
+  //Checks if item has been used already
   boolean used=false;
 
   //Name of item
@@ -10,7 +10,7 @@ class Item {
   
   //This 2D array will store the names of the stats to be modified, how much they will modified by, and how much they will be amplified by
   //Some stats may just be increased by a set amount, while other may be amplified by a factor(multiplied)
-  String toChange[][]=new String[2][3];
+  String toChange[][] = new String[2][3];
   
   Item(String itemName)throws Exception{
     //Constructor will help specify which champion stat the item will modify and by how much or what factor
@@ -109,12 +109,12 @@ class Item {
 
   public String toString(){
 
-      String toPrint;
+      String toPrint = "";
 
       //Prints out first stat and item name
       toPrint += this.getName();
       toPrint +="\n"+ toChange[0][0] + ": \n" ;
-      //toPrint +="+" toChange[0][1] +"\n" + "x" + toChange[0][2];
+      toPrint +="+" + toChange[0][1] +"\n" + "x" + toChange[0][2];
 
       if(!toChange[1][1].equals("0")){
 
