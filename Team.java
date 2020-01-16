@@ -76,5 +76,24 @@ class Team {
     } 
     
   }
+
+  public void useItem (String itemName){
+
+    //Variable used ot  help specify which item in pool is being reffered to
+    int helper=0;
+
+    for(int i=0; i< itemPool.size(); i++){
+
+      if(itemPool.get(i).getName().equals(itemName)){
+        helper = i;
+      }
+    }
+
+    //Appllys item to current champion
+    itemPool.get(helper).apply(this.getCurrentChamp());
+
+    //Removes item from pool after being used
+    itemPool.remove(helper);
+  }
   
 }
