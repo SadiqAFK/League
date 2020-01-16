@@ -17,7 +17,7 @@ class Ability {
   private double boost;
   private double amplify;  
   
-  Ability(String name){
+  Ability(String name) throws Exception{
     abilityName=name;
     generateValues(abilityName);
   }
@@ -95,7 +95,7 @@ class Ability {
     champion.setMana(champion.getMana() - manaCost);
   }
 
-  private void generateValues(String name){
+  private void generateValues(String name) throws Exception{
 
     File file = new File("Abilities.csv");
     BufferedReader reader = new BufferedReader(new FileReader(file));
@@ -108,10 +108,10 @@ class Ability {
       if(helper.split(",")[0].equals(name)){
 
         //Populate damage array with basse stats from file
-        setBaseAttack(helper.split(",")[1]);
-        setBaseMagic(helper.split(",")[2]);
+        setBaseAttack(Double.parseDouble(helper.split(",")[1]));
+        setBaseMagic(Double.parseDouble(helper.split(",")[2]));
         //Set mana cost of ability from file values
-        setManaCost(helper.split(",")[3]);
+        setManaCost(Double.parseDouble(helper.split(",")[3]));
 
       }
     }
