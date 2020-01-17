@@ -7,8 +7,8 @@ import java.io.*;
 class LeagueMain {
   public static void main(String[] args) throws Exception {
     
-    Champion champOnBoard = new Champion("temp", "temp", "temp"); // Temp champs that will be filled in by chosen champs
-    Champion champ2OnBoard = new Champion("temp", "temp", "temp");
+    Champion champOnBoard = new Champion("temp", "temp", "temp", "temp", "temp", "temp"); // Temp champs that will be filled in by chosen champs
+    Champion champ2OnBoard = new Champion("temp", "temp", "temp", "temp", "temp", "temp");
     boolean playerTurn = false; // If true, player 1 turn - if false, player 2 turn
     
     ArrayList<Champion> championList = new ArrayList<Champion>(); // Champ list
@@ -50,7 +50,7 @@ class LeagueMain {
         champOnBoard = player1List.getChamps().get(championPick);
       }
       catch (Exception e) {
-        while (championPick < player1List.getChamps().size() || championPick > player1List.getChamps().size() - 1) {
+        while (championPick < player1List.getChamps().size() || championPick > player1List.getChamps().size()) {
           System.out.println("Invalid input! Choose a valid champ.");
           championPick = reader.nextInt();
         }
@@ -63,7 +63,7 @@ class LeagueMain {
         champ2OnBoard = player2List.getChamps().get(championPick);
       }
       catch (Exception e) {
-        while (championPick2 < player2List.getChamps().size() || championPick2 > player2List.getChamps().size() - 1) {
+        while (championPick2 < player2List.getChamps().size() || championPick2 > player2List.getChamps().size()) {
           System.out.println("Invalid input! Choose a valid champ.");
           championPick2 = reader.nextInt();
         }
@@ -79,9 +79,11 @@ class LeagueMain {
         while (playerTurn == true) {
           statusDisplay(champOnBoard); // Displays the current health and mana of champion
           statusCheck(champOnBoard, playerTurn);
+          
           if (playerTurn == false) { // If after status effects, champ is frozen, end turn
             break;
           }
+          
           System.out.println("\nIt is player 1's turn. What would you like to do?");
           System.out.println("1. Attack");
           System.out.println("2. Equip Items");
@@ -94,11 +96,19 @@ class LeagueMain {
                                  + champ2OnBoard.getName());
             System.out.println(champOnBoard.getName() + "'s moves: ");
             // display moves
-            System.out.println("Select a move: ");
-            int moveChoice = reader.nextInt();
+            champOnBoard.printAbilities();
+            System.out.println("\nSelect a move: ");
+            int moveChoice = reader.nextInt(); // selects a move
+            
+            champOnBoard.attack(moveChoice, champOnBoard, champ2OnBoard); // Attacks the other champion
           }
           else if (choice == 2) { // Equip an item
-            // displays items 
+            System.out.println("Which item would you like to equip?");
+            for (int i = 0; i < player1List.getItemPool().size(); i++) {
+              System.out.println(player1List.getItemPool().get(i));
+            }
+            String itemChoice = reader.nextLine();
+            player1List.useItem(itemChoice, champOnBoard);
           }
           else if (choice == 3) { // Switch Champ
             System.out.println("Who would you like to select?");
@@ -115,31 +125,76 @@ class LeagueMain {
             
             champOnBoard = player1List.getChamps().get(switchChoice);
           }
+          
+          if (champ2OnBoard.isDead()) {
+            player2List.getChamps().remove(champ2OnBoard);
+            player2List.getChamps().trimToSize();
+          }
+          
+          System.out.println("yeet");
+          playerTurn = false;
+          player1List.regen();
         }
-        System.out.println("yeet");
-        // Player 2 turn
-        /*
-         else if (playerTurn == false) {
-         System.out.println("\nIt is player 2's turn. What would you like to do?");
-         System.out.println("1. Attack");
-         System.out.println("2. Equip Items");
-         System.out.println("3. Switch Champions");
-         int choice = reader.nextInt();
-         
-         if (choice == 1) {
-         
-         }
-         else if (choice == 2) {
-         
-         }
-         else if (choice == 3) {
-         
-         }
-         }
-         */
+        
+        // Player 2's turn
+        while (playerTurn == false) {
+          statusDisplay(champ2OnBoard); // Displays the current health and mana of champion
+          statusCheck(champ2OnBoard, playerTurn);
+          
+          if (playerTurn == true) { // If after status effects, champ is frozen, end turn
+            break;
+          }
+          
+          System.out.println("\nIt is player 2's turn. What would you like to do?");
+          System.out.println("1. Attack");
+          System.out.println("2. Equip Items");
+          System.out.println("3. Switch Champions");
+          
+          int choice = reader.nextInt();
+          
+          if (choice == 1) { // Attack move
+            System.out.println("\n" + champ2OnBoard.getName() + " is currently attacking " 
+                                 + champOnBoard.getName());
+            System.out.println(champ2OnBoard.getName() + "'s moves: ");
+            // display moves
+            champ2OnBoard.printAbilities();
+            System.out.println("\nSelect a move: ");
+            int moveChoice = reader.nextInt(); // selects a move
+            
+            champ2OnBoard.attack(moveChoice, champ2OnBoard, champOnBoard); // Attacks the other champion
+          }
+          else if (choice == 2) { // Equip an item
+            System.out.println("Which item would you like to equip?");
+            for (int i = 0; i < player2List.getItemPool().size(); i++) {
+              System.out.println(player2List.getItemPool().get(i));
+            }
+            String item2Choice = reader.nextLine();
+            player2List.useItem(item2Choice, champ2OnBoard);
+          }
+          else if (choice == 3) { // Switch Champ
+            System.out.println("Who would you like to select?");
+            for (int i = 0; i < player2List.getChamps().size(); i++) {
+              System.out.println("Champion: " + i + ": " + player2List.getChamps().get(i).getName());
+            }
+            int switchChoice = reader.nextInt();
+            
+            // While champ selected is equal to one on board
+            while (player2List.getChamps().get(switchChoice).getName().equals(champ2OnBoard.getName())) { 
+              System.out.println("You can't switch to your current champion!");
+              switchChoice = reader.nextInt();
+            }
+            
+            champ2OnBoard = player2List.getChamps().get(switchChoice);
+          }
+          if (champ2OnBoard.isDead()) {
+            player1List.getChamps().remove(champOnBoard);
+            player1List.getChamps().trimToSize();
+          }
+          System.out.println("yeet2");
+          playerTurn = true;
+          player2List.regen();
+        }
       }
-      
-      
       
     }
     
@@ -175,22 +230,24 @@ class LeagueMain {
     System.out.println("\n" + champion.getName() + " has: "
                          + "\nHealth: " + champion.getHealth()
                          + "\nMana: " + champion.getMana());
+    System.out.println(champion.getName() + " is frozen: " + champion.isFrozen());
+    System.out.println(champion.getName() + " is poisoned: " + champion.isPoisoned());
   }
   
   // Checks for any status effects on champion
   public static void statusCheck(Champion champion, boolean playerTurn) {
     if (playerTurn = true) { // Frozen check for player 1
-      if (champion.isFrozen()) {
+      if (champion.isFrozen() == true) {
         playerTurn = false;
       }
     }
     if (playerTurn = false) { // Frozen check for player 2
-      if (champion.isFrozen()) {
+      if (champion.isFrozen() == true) {
         playerTurn = true;
       }
     }
-    if (champion.isPoisoned()) {
-        champion.setHealth(champion.getHealth() - 50); // If poisoned, reduce health by 50 each tick
+    if (champion.isPoisoned() == true) {
+      champion.setHealth(champion.getHealth() - 50); // If poisoned, reduce health by 50 each tick
     }
   }
   
@@ -223,7 +280,7 @@ class LeagueMain {
         String[] row = line.split(cvsSplitBy);
         
         // sets champion stats
-        Champion champion = new Champion(row[0], row[1], row[2]);
+        Champion champion = new Champion(row[0], row[1], row[2], row[16], row[17], row[18]);
         champion.setHealth(Double.parseDouble(row[3]));
         champion.setAtkSpd(Double.parseDouble(row[4]));
         champion.setAtkDmg(Double.parseDouble(row[5]));
@@ -258,22 +315,27 @@ class LeagueMain {
   }
   
   /*
-   public static void trait(Champion champion, Ability ability) {
-   if (champion.getTrait().equals("Noxus")) {
-   tribe.noxusTrait(champion);
-   }
-   //else if (champion.getTrait().equals("Demacia")) {
-   //  tribe.demacianTrait(champion);
-   //}
-   else if (champion.getTrait().equals("Ionian")) {
-   tribe.ionianTrait(champion);
-   }
-   else if (champion.getTrait().equals("Freljord")) {
-   tribe.applyTrait(champion);
-   }
-   else if (champion.getTrait().equals("Zaun")) {
-   tribe.applyTrait(champion);
-   }
-   }
-   */
+  public static void applyType(Champion champion, Ability ability) {
+    applyTrait(champion, ability);
+  }
+  
+  public static void trait(Champion champion, Ability ability) {
+    if (champion.getTribe().equals("Noxus")) {
+      
+    }
+    else if (champion.getTribe().equals("Demacia")) {
+      
+    }
+    else if (champion.getTribe().equals("Ionian")) {
+      
+    }
+    else if (champion.getTribe().equals("Freljord")) {
+      
+    }
+    else if (champion.getTribe().equals("Zaun")) {
+      
+    }
+  }
+  
+  */
 }

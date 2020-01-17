@@ -1,3 +1,4 @@
+
 // Creators: Sadiq Hussain, Nathan Chung
 // This is the champion class used to define the traits of a champion
 
@@ -8,8 +9,8 @@ import java.util.*;
 public class  Champion {
   // Initialize protected int fields (stats):
   protected String name;
-  protected String type;
   protected String tribe;
+  protected String type;
   
   //Array to stor names of all stats
   private String[] statNames = {"Health","Attack Speed","Attack Damage","Armor","Crit","Magic Damage","Magic Resistance",
@@ -21,15 +22,22 @@ public class  Champion {
   // Initialize private booleans (effects):
   private boolean frozen = false;
   private boolean poisoned = false;
+
+  private Ability[] abilities = new Ability[3];
   
   public Champion() {
     
   }
   
-  public Champion(String champName, String champType, String champTribe) {
+  public Champion(String champName, String champType, String champTribe , String ability1, String ability2, String ability3) throws Exception {
     name = champName;
     type = champType;
     tribe = champTribe;
+
+    //Adding champions abilities
+    abilities[0] = new Ability(ability1);
+    abilities[1] = new Ability(ability2);
+    abilities[2] = new Ability(ability3);
   } 
 
   //Getters
@@ -167,6 +175,7 @@ public class  Champion {
     statValues[12]=maxMana;
   }
 
+
   public void setStatValues(double[] newStats){
 
     for(int i=0;i<newStats.length;i++){
@@ -192,15 +201,22 @@ public class  Champion {
     poisoned = false;
   }
   
-  public void addStun(boolean frozen) {
+  public void addStun() {
     frozen = true;
   }
   
-  public void removeStun(boolean frozen) {
+  public void removeFrozen() {
     frozen = false;
   }
 
   //Methods
+
+  public void applyType(Champion champion, Ability ability) {
+    
+  }
+  public void attack (int abilityName, Champion champ, Champion enemy){
+    abilities[abilityName - 1].attack(champ, enemy);
+  }
 
   public String toString() {
     return "Name: " + name + "\nType: " + type + "\nTribe: " +tribe + "\nHealth: " + statValues[1]
@@ -221,12 +237,24 @@ public class  Champion {
   }
 
   //Checks if champion is dead
-  public boolean isDead(Champion champion) {
-    if (champion.getHealth() < 0) {
-      return true;
+  public boolean isDead() {
+    return this.getHealth()<=0;
+  }
+
+  public void printAbilities(){
+  int counter = 0;
+  for(int i=0; i<abilities.length; i++) {
+    counter++;
+    double totalAtkDmg = this.getAtkDmg() + abilities[i].getBaseAttack();
+    double totalMagicDmg = this.getMagicDmg() + abilities[i].getBaseMagic();
+    System.out.println(counter + ". " + abilities[i].getName());
+
+    if(abilities[i].getBaseAttack()>=0){
+      System.out.print("Attack damage: "+ totalAtkDmg + "\n");
     }
-    return false;
+    if(abilities[i].getBaseMagic()>=0){
+      System.out.print("Magic damage:" + totalMagicDmg + "\n");
+    }
+  }
   }
 }
-
-

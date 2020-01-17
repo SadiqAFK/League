@@ -9,24 +9,23 @@ class Tribe {
   private String PILTOVER = "Piltover";
   private String DEMACIA = "Demacia";
   private String NOXUS = "Noxus";
+ 
+  private static int killCounter; // Kill counter
   
   private boolean freeze; // Freljord
   private boolean poison; // Zaun
-  private double lifesteal; // Ionian
   
   // Applies the noxian trait
-  public void noxusTrait(Champion champion) {
-    champion.setArmor(champion.getArmor() + 2);
-  } 
-  
-  public void demacianTrait(Champion champion) {
-    champion.setMagicRes(champion.getMagicRes() + 2);
+  public double noxusTrait(Champion champion, Champion enemyChamp) {
+    double damageAmp = 0; // Damage amplification based off kills
+    
+    return damageAmp;
   }
   
   // Applies the ionian effect
   public double ionianTrait(Champion champion, Ability ability) {
     
-    lifesteal = 0; // Heals ionians for 10% of the damage they deal
+    double lifesteal = 0; // Heals ionians for 10% of the damage they deal
     champion.setHealth(champion.getHealth() - 100); // Decreases the total health of ionians by 100
     
     lifesteal = (ability.getBaseAttack() + ability.getBaseMagic() * 0.1);
@@ -51,18 +50,5 @@ class Tribe {
       }
     }
     return false; // Default case
-  }
-  
-  // Getters
-  public double getLifeSteal() {
-    return lifesteal;
-  }
-  
-  public boolean poisonResult() {
-    return poison;
-  }
-  
-  public boolean freezeResult() {
-    return freeze;
   }
 }

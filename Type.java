@@ -2,25 +2,24 @@ package League;
 
 import java.util.*;
 
-public class Type extends Ability {
+public class Type extends Champion {
   private String RANGER = "Ranger";
   private String MAGE = "Mage";
   private String TANK = "Tank";
   
-  protected boolean autoTwice = false; // Ranger effect, allows for two autos in succession
-  protected boolean castTwice = false; // Mage effect, allows for doublecasting of spells
-  protected boolean belowFifty = false; // Tank effect, allows for extra resistances when below 50% health
+  private boolean autoTwice = false; // Ranger effect, allows for two autos in succession
+  private boolean castTwice = false; // Mage effect, allows for doublecasting of spells
+  private boolean belowFifty = false; // Tank effect, allows for extra resistances when below 50% health
   
   // Type constructor, accounts for all 3 types of champions
-  public Type (String abilityName, boolean twoAutos, boolean doubleCast, boolean fifty) throws Exception {
-    super(abilityName);
+  public Type (boolean twoAutos, boolean doubleCast, boolean fifty) throws Exception {
     autoTwice = twoAutos;
     castTwice = doubleCast;
     belowFifty = fifty;
   }
   
   // Calculates what effect will be returned
-  public boolean typeEffect(Champion champion, Ability ability, boolean autoTwice, boolean castTwice, boolean belowFifty) {
+  public boolean typeEffect(Champion champion, Ability ability) {
     Random randomGen = new Random();
     int randomNum = randomGen.nextInt(100); // Generates num between 0 and 99
     

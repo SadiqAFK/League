@@ -1,7 +1,22 @@
 Item name,Boost,Amplify
-Brawler gloves,,
-Attack Speed,22.2,1.2
-Health,200.2,1.2
-Timbs,,
-Health,20000,1
-Health,0,1
+Infinity Edge,,
+Attack Damage,80,1
+Crit,0,1.25
+Iron Solari,,
+Armor,45,1
+Magic Resistance,75,1
+Staff,,
+Max Mana,200,1
+Magic Damage,50,1.03
+Rageblade,,
+Attack Damage,25,1
+Magic Damage,25,1
+Cleaver,,
+Max Health,200,1
+Attack Damage,100,1
+Mana Potion,,
+Max Mana,100,1
+Mana ,200,1
+Health Potion,,
+Max Health,100,1
+Health,100,1

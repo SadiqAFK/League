@@ -27,6 +27,9 @@ class Team {
     return playerName;
   }
   
+  public ArrayList<Item> getItemPool() {
+    return itemPool;
+  }
   // Adds a champion to the team
   public void addChamp(Champion champion) {
     if (championPool.size() < 3) {
@@ -55,10 +58,9 @@ class Team {
     
   }
   
-  /*
-  public void useItem (String itemName){
+  public void useItem (String itemName, Champion champion){
 
-    //Variable used ot  help specify which item in pool is being reffered to
+    //Variable used to  help specify which item in pool is being reffered to
     int helper=0;
 
     for(int i=0; i< itemPool.size(); i++){
@@ -69,10 +71,17 @@ class Team {
     }
 
     //Appllys item to current champion
-    itemPool.get(helper).apply(this.getCurrentChamp());
+    itemPool.get(helper).apply(champion);
 
     //Removes item from pool after being used
     itemPool.remove(helper);
   }
-  */
+  
+  //Regenerate mana for all champions on team
+  public void regen (){
+
+    for(int i=0; i<championPool.size(); i++){
+      championPool.get(i).regen();
+    }
+  }
 }

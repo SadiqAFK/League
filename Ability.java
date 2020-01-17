@@ -1,4 +1,3 @@
-
 package League;
 
 import java.io.*;
@@ -9,7 +8,7 @@ class Ability {
   private String abilityName;
   private double manaCost;
   
-  // This array willl store the total magic damage and total attack damage of the ability
+  //This array willl store the total magic damage and total attack damage of the ability
   // Slot 0 is ad, slot 1 is md
   private double[] baseStats = new double[2];
   
@@ -125,6 +124,3 @@ class Ability {
   }
 
 }
-
-
-
