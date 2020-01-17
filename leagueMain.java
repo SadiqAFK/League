@@ -14,8 +14,10 @@ class LeagueMain {
     ArrayList<Champion> championList = new ArrayList<Champion>(); // Champ list
     Team player1List = new Team("Player 1"); // Player 1 Champ list
     Team player2List = new Team("Player 2"); // Player 2 Champ list
-    int championPick = 0;
+    
+    int championPick = 0; // Initialize champ selection variables
     int championPick2 = 0;
+    
     Scanner reader = new Scanner(System.in);
     System.out.println("Type PVP or PVC");
     String mode = reader.nextLine();
@@ -41,75 +43,100 @@ class LeagueMain {
         }
       }
       
+      System.out.println("\nPlayer 1: Which champion do you wish to choose?");
+      championPick = reader.nextInt(); // Chooses a champ from player 1 list
+      try {
+        System.out.println("You have chosen: " + player1List.getChamps().get(championPick).getName());
+        champOnBoard = player1List.getChamps().get(championPick);
+      }
+      catch (Exception e) {
+        while (championPick < player1List.getChamps().size() || championPick > player1List.getChamps().size() - 1) {
+          System.out.println("Invalid input! Choose a valid champ.");
+          championPick = reader.nextInt();
+        }
+      }
+      
+      System.out.println("\nPlayer 2: Which champion do you wish to choose?");
+      championPick2 = reader.nextInt(); // Chooses a champ from player 2 list
+      try {
+        System.out.println("You have chosen: " + player2List.getChamps().get(championPick2).getName());
+        champ2OnBoard = player2List.getChamps().get(championPick);
+      }
+      catch (Exception e) {
+        while (championPick2 < player2List.getChamps().size() || championPick2 > player2List.getChamps().size() - 1) {
+          System.out.println("Invalid input! Choose a valid champ.");
+          championPick2 = reader.nextInt();
+        }
+      }
+      
+      // Chooses which player goes first
+      playerTurn = compareSpd(champOnBoard, champ2OnBoard, playerTurn); 
+      
       // Game runs while either player does not have a champ that has died
       while (player1List.getChamps().size() != 0 || player2List.getChamps().size() != 0) {
-        System.out.println("Player 1: Which champion do you wish to choose?");
-        championPick = reader.nextInt(); // Chooses a champ from player 1 list
-        try {
-          System.out.println("You have chosen: " + player1List.getChamps().get(championPick).getName());
-          champOnBoard = player1List.getChamps().get(championPick);
-        }
-        catch (Exception e) {
-          while (championPick < player1List.getChamps().size() || championPick > player1List.getChamps().size() - 1) {
-            System.out.println("Invalid input! Choose a valid champ.");
-            championPick = reader.nextInt();
-          }
-        }
-        
-        System.out.println("Player 2: Which champion do you wish to choose?");
-        championPick2 = reader.nextInt(); // Chooses a champ from player 2 list
-        try {
-          System.out.println("You have chosen: " + player2List.getChamps().get(championPick2).getName());
-          champ2OnBoard = player2List.getChamps().get(championPick);
-        }
-        catch (Exception e) {
-          while (championPick2 < player2List.getChamps().size() || championPick2 > player2List.getChamps().size() - 1) {
-            System.out.println("Invalid input! Choose a valid champ.");
-            championPick2 = reader.nextInt();
-          }
-        }
-        
-        // Chooses which player goes first
-        playerTurn = compareSpd(player1List.getChamps().get(championPick), player2List.getChamps().get(championPick2), playerTurn); 
         
         // Player 1's turn
-        if (playerTurn == true) {
+        while (playerTurn == true) {
+          statusDisplay(champOnBoard); // Displays the current health and mana of champion
+          statusCheck(champOnBoard, playerTurn);
+          if (playerTurn == false) { // If after status effects, champ is frozen, end turn
+            break;
+          }
           System.out.println("\nIt is player 1's turn. What would you like to do?");
           System.out.println("1. Attack");
           System.out.println("2. Equip Items");
           System.out.println("3. Switch Champions");
+          
           int choice = reader.nextInt();
           
-          if (choice == 1) {
-            
+          if (choice == 1) { // Attack move
+            System.out.println("\n" + champOnBoard.getName() + " is currently attacking " 
+                                 + champ2OnBoard.getName());
+            System.out.println(champOnBoard.getName() + "'s moves: ");
+            // display moves
+            System.out.println("Select a move: ");
+            int moveChoice = reader.nextInt();
           }
-          else if (choice == 2) {
-            
+          else if (choice == 2) { // Equip an item
+            // displays items 
           }
-          else if (choice == 3) {
+          else if (choice == 3) { // Switch Champ
+            System.out.println("Who would you like to select?");
+            for (int i = 0; i < player1List.getChamps().size(); i++) {
+              System.out.println("Champion: " + i + ": " + player1List.getChamps().get(i).getName());
+            }
+            int switchChoice = reader.nextInt();
             
+            // While champ selected is equal to one on board
+            while (player1List.getChamps().get(switchChoice).getName().equals(champOnBoard.getName())) { 
+              System.out.println("You can't switch to your current champion!");
+              switchChoice = reader.nextInt();
+            }
+            
+            champOnBoard = player1List.getChamps().get(switchChoice);
           }
         }
-        
+        System.out.println("yeet");
         // Player 2 turn
-        else if (playerTurn == false) {
-          System.out.println("\nIt is player 2's turn. What would you like to do?");
-          System.out.println("1. Attack");
-          System.out.println("2. Equip Items");
-          System.out.println("3. Switch Champions");
-          int choice = reader.nextInt();
-          
-          if (choice == 1) {
-            
-          }
-          else if (choice == 2) {
-            
-          }
-          else if (choice == 3) {
-            
-          }
-        }
-        
+        /*
+         else if (playerTurn == false) {
+         System.out.println("\nIt is player 2's turn. What would you like to do?");
+         System.out.println("1. Attack");
+         System.out.println("2. Equip Items");
+         System.out.println("3. Switch Champions");
+         int choice = reader.nextInt();
+         
+         if (choice == 1) {
+         
+         }
+         else if (choice == 2) {
+         
+         }
+         else if (choice == 3) {
+         
+         }
+         }
+         */
       }
       
       
@@ -143,6 +170,32 @@ class LeagueMain {
      */
   }
   
+  // Displays the current health and mana of champion
+  public static void statusDisplay(Champion champion) {
+    System.out.println("\n" + champion.getName() + " has: "
+                         + "\nHealth: " + champion.getHealth()
+                         + "\nMana: " + champion.getMana());
+  }
+  
+  // Checks for any status effects on champion
+  public static void statusCheck(Champion champion, boolean playerTurn) {
+    if (playerTurn = true) { // Frozen check for player 1
+      if (champion.isFrozen()) {
+        playerTurn = false;
+      }
+    }
+    if (playerTurn = false) { // Frozen check for player 2
+      if (champion.isFrozen()) {
+        playerTurn = true;
+      }
+    }
+    if (champion.isPoisoned()) {
+        champion.setHealth(champion.getHealth() - 50); // If poisoned, reduce health by 50 each tick
+    }
+  }
+  
+  // Compares the atkSpd values of both champions in play
+  // Champion with higher atkSpd value will attack first
   public static boolean compareSpd(Champion champion, Champion champion2, boolean playerTurn) {
     if (champion.getAtkSpd() < champion2.getAtkSpd()) {
       return playerTurn = false;
@@ -152,6 +205,7 @@ class LeagueMain {
     }
   }
   
+  // Reads csv file
   public static void champIo(ArrayList<Champion> championList) throws Exception {
     String csvFile = "champList.csv";
     BufferedReader br;
@@ -196,6 +250,7 @@ class LeagueMain {
     }
   }
   
+  // Selects a champion
   public static void championPicker(int select, ArrayList<Champion> playerList, ArrayList<Champion> championList) {
     playerList.add(championList.get(select));
     championList.remove(select);

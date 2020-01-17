@@ -55,6 +55,7 @@ class Team {
     
   }
   
+  /*
   public void useItem (String itemName){
 
     //Variable used ot  help specify which item in pool is being reffered to
@@ -73,5 +74,5 @@ class Team {
     //Removes item from pool after being used
     itemPool.remove(helper);
   }
-  
+  */
 }

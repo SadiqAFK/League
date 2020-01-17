@@ -8,8 +8,8 @@ import java.util.*;
 public class  Champion {
   // Initialize protected int fields (stats):
   protected String name;
-  protected String tribe;
   protected String type;
+  protected String tribe;
   
   //Array to stor names of all stats
   private String[] statNames = {"Health","Attack Speed","Attack Damage","Armor","Crit","Magic Damage","Magic Resistance",
@@ -19,7 +19,7 @@ public class  Champion {
   private double[] statValues = new double[13];
   
   // Initialize private booleans (effects):
-  private boolean stunned = false;
+  private boolean frozen = false;
   private boolean poisoned = false;
   
   public Champion() {
@@ -167,7 +167,6 @@ public class  Champion {
     statValues[12]=maxMana;
   }
 
-
   public void setStatValues(double[] newStats){
 
     for(int i=0;i<newStats.length;i++){
@@ -177,11 +176,11 @@ public class  Champion {
 
   //Adding/Removing status effects
 
-  public boolean isStunned(boolean stunned) {
-    return stunned;
+  public boolean isFrozen() {
+    return frozen;
   }
   
-  public boolean isPoisoned(boolean poisoned) {
+  public boolean isPoisoned() {
     return poisoned;
   }
   
@@ -193,18 +192,18 @@ public class  Champion {
     poisoned = false;
   }
   
-  public void addStun(boolean stunned) {
-    stunned = true;
+  public void addStun(boolean frozen) {
+    frozen = true;
   }
   
-  public void removeStun(boolean stunned) {
-    stunned = false;
+  public void removeStun(boolean frozen) {
+    frozen = false;
   }
 
   //Methods
 
   public String toString() {
-    return "Name: " + name + "\nTribe: " +tribe + "\nHealth: " + statValues[1]
+    return "Name: " + name + "\nType: " + type + "\nTribe: " +tribe + "\nHealth: " + statValues[1]
            + "\nAttack Speed: " + statValues[1] + "\nAttack Damage: " + statValues[2] +
            "\nArmor: " + statValues[3] + "\nCrit: " + statValues[4] + "\nMagic Damage: " + statValues[5]
            + "\nMagic Res: " + statValues[6] + "\nMana: " + statValues[7] + "\nMana Regen: " + statValues[8]
@@ -222,8 +221,11 @@ public class  Champion {
   }
 
   //Checks if champion is dead
-  public boolean isDead() {
-    return this.getHealth()<=0;
+  public boolean isDead(Champion champion) {
+    if (champion.getHealth() < 0) {
+      return true;
+    }
+    return false;
   }
 }
 

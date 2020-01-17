@@ -9,7 +9,7 @@ class Ability {
   private String abilityName;
   private double manaCost;
   
-  //This array willl store the total magic damage and total attack damage of the ability
+  // This array willl store the total magic damage and total attack damage of the ability
   // Slot 0 is ad, slot 1 is md
   private double[] baseStats = new double[2];
   
@@ -109,14 +109,19 @@ class Ability {
       if(helper.split(",")[0].equals(name)){
 
         //Populate damage array with basse stats from file
-        //setBaseAttack(helper.split(",")[1]);
-        //setBaseMagic(helper.split(",")[2]);
+        setBaseAttack(Double.parseDouble(helper.split(",")[1]));
+        setBaseMagic(Double.parseDouble(helper.split(",")[2]));
         //Set mana cost of ability from file values
-        //setManaCost(helper.split(",")[3]);
+        setManaCost(Double.parseDouble(helper.split(",")[3]));
 
       }
     }
 
+  }
+
+
+  public String toString(){
+    return this.getName();
   }
 
 }

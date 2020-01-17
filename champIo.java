@@ -25,7 +25,7 @@ public class champIo {
         String[] row = line.split(cvsSplitBy);
         
         // sets champion stats
-        Champion champion = new Champion(row[0], row[2]);
+        Champion champion = new Champion(row[0], row[1], row[2]);
         champion.setHealth(Double.parseDouble(row[3]));
         champion.setAtkSpd(Double.parseDouble(row[4]));
         champion.setAtkDmg(Double.parseDouble(row[5]));
