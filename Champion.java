@@ -5,13 +5,22 @@ package League;
 
 import java.util.*;
 
-public class  Champion {
+public class Champion {
   // Initialize protected int fields (stats):
+<<<<<<< HEAD
   protected String name;
   protected String tribe;
   protected String type;
   
   //Array to stor names of all stats
+=======
+  protected static String name;
+  protected static String tribe;
+
+  private int itemsUsed=0;
+
+  //Array to store names of all stats
+>>>>>>> 37b105034f45d586c13643da8c84d61a18004657
   private String[] statNames = {"Health","Attack Speed","Attack Damage","Armor","Crit","Magic Damage","Magic Resistance",
   "Mana","Mana Regen","Movement Speed","Tenacity","maxHealth","maxMana"};
 
@@ -102,6 +111,8 @@ public class  Champion {
     return statValues;
   }
 
+
+
   //Setters
 
   public void setHealth(double newHealth) {
@@ -167,7 +178,6 @@ public class  Champion {
     statValues[12]=maxMana;
   }
 
-
   public void setStatValues(double[] newStats){
 
     for(int i=0;i<newStats.length;i++){
@@ -202,6 +212,14 @@ public class  Champion {
   }
 
   //Methods
+
+  public void addItem(){
+    itemsUsed+=1;
+  }
+
+  public boolean itemAllowed(){
+    return itemsUsed<=2;
+  }
 
   public String toString() {
     return "Name: " + name + "\nTribe: " +tribe + "\nHealth: " + statValues[1]
