@@ -1,3 +1,4 @@
+
 package League;
 
 import java.io.*;
@@ -108,10 +109,10 @@ class Ability {
       if(helper.split(",")[0].equals(name)){
 
         //Populate damage array with basse stats from file
-        setBaseAttack(Double.parseDouble(helper.split(",")[1]));
-        setBaseMagic(Double.parseDouble(helper.split(",")[2]));
+        //setBaseAttack(helper.split(",")[1]);
+        //setBaseMagic(helper.split(",")[2]);
         //Set mana cost of ability from file values
-        setManaCost(Double.parseDouble(helper.split(",")[3]));
+        //setManaCost(helper.split(",")[3]);
 
       }
     }

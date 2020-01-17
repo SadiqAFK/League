@@ -12,7 +12,7 @@ public class Type extends Ability {
   protected boolean belowFifty = false; // Tank effect, allows for extra resistances when below 50% health
   
   // Type constructor, accounts for all 3 types of champions
-  public Type (String abilityName, boolean twoAutos, boolean doubleCast, boolean fifty) {
+  public Type (String abilityName, boolean twoAutos, boolean doubleCast, boolean fifty) throws Exception {
     super(abilityName);
     autoTwice = twoAutos;
     castTwice = doubleCast;

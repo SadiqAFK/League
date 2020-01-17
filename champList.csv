@@ -1,16 +1,16 @@
-Name,Type,Tribe,Health,AtkSpd,AtkDmg,Armor,Crit,MagicDmg,MagicRes,Mana,ManaReg,MoveSpd,Tenacity,Ability 1,Ability 2,Ability 3,,
-Ashe,Ranger,Freljord,440,0.67,75,26,15,0,30,280,20,20,0,Auto,Ranger's Focus,Enchanted Crystal Arrow,, 
-Sejuani,Tank,Freljord,690,0.625,66,38,5,20,24,400,5,5,1,Auto,Winter's Wrath,Permafrost,,
-Lissandra,Mage,Freljord,450,0.65,20,22,0,80,31,475,40,10,0,Auto,Ice Shard,Frozen Tomb,,
-Twitch,Ranger,Zaun,480,0.68,76,27,15,0,30,300,20,20,0,Auto,Contaminate,Expunge,,
-Viktor,Mage,Zaun,430,0.65,30,23,0,75,32,500,35,10,0,Auto,Siphon,Death Ray,,
-Zac,Tank,Zaun,800,0.73,60,37,5,30,21,0,0,5,1,Auto,Unstable Matter,Elastic Slingshot,,
-Jhin,Ranger,Ionia,444,0.4,94,24,14,0,24,244,14,34,0,Auto,Whisper,Deadly Flourish,,
-Ahri,Mage,Ionia,470,0.6,25,20,0,85,35,415,30,30,0,Auto,Orb of Deception,Fox Fire,,
-Shen,Tank,Ionia,750,0.63,51,40,0,30,20,0,0,5,1,Auto,Twilight Assault,Spirit's Refuge,,
-Garen,Tank,Demacia,730,0.68,60,41,0,0,20,0,0,5,1,Auto,Decisive Strike,Justice,,
-Lucian,Ranger,Demacia,510,1,65,23,15,0,31,350,20,20,0,Auto,Piercing Light,The Culling,,
-Lux,Mage,Demacia,475,0.59,27,20,0,85,33,500,50,10,0,Auto,Light Binding,Final Spark,,
-Swain,Mage,Noxus,525,0.62,33,21,0,79,32,525,50,10,0,Auto,Deaths Hand,Demonflare,,
-Darius,Tank,Noxus,730,0.68,65,36,0,0,20,325,25,5,1,Auto,Apprehend,Guillotine,,
-Draven,Ranger,Noxus,485,0.69,80,27,15,0,29,250,15,20,0,Auto,Spinning Axe,Blood Rush,,
+Name,Type,Tribe,Health,AtkSpd,AtkDmg,Armor,Crit,MagicDmg,MagicRes,Mana,ManaReg,MoveSpd,Tenacity,Health,Mana,Ability 1,Ability 2,Ability 3
+Ashe,Ranger,Freljord,440,0.67,75,26,15,0,30,280,20,20,0,440,280,Auto,Ranger's Focus,Enchanted Crystal Arrow
+Sejuani,Tank,Freljord,690,0.625,66,38,5,20,24,400,5,5,1,690,400,Auto,Winter's Wrath,Permafrost
+Lissandra,Mage,Freljord,450,0.65,20,22,0,80,31,475,40,10,0,450,475,Auto,Ice Shard,Frozen Tomb
+Twitch,Ranger,Zaun,480,0.68,76,27,15,0,30,300,20,20,0,480,300,Auto,Contaminate,Expunge
+Viktor,Mage,Zaun,430,0.65,30,23,0,75,32,500,35,10,0,430,500,Auto,Siphon,Death Ray
+Zac,Tank,Zaun,800,0.73,60,37,5,30,21,0,0,5,1,800,0,Auto,Unstable Matter,Elastic Slingshot
+Jhin,Ranger,Ionia,444,0.4,94,24,14,0,24,244,14,34,0,444,244,Auto,Whisper,Deadly Flourish
+Ahri,Mage,Ionia,470,0.6,25,20,0,85,35,415,30,30,0,470,415,Auto,Orb of Deception,Fox Fire
+Shen,Tank,Ionia,750,0.63,51,40,0,30,20,0,0,5,1,750,0,Auto,Twilight Assault,Spirit's Refuge
+Garen,Tank,Demacia,730,0.68,60,41,0,0,20,0,0,5,1,730,0,Auto,Decisive Strike,Justice
+Lucian,Ranger,Demacia,510,1,65,23,15,0,31,350,20,20,0,510,350,Auto,Piercing Light,The Culling
+Lux,Mage,Demacia,475,0.59,27,20,0,85,33,500,50,10,0,475,500,Auto,Light Binding,Final Spark
+Swain,Mage,Noxus,525,0.62,33,21,0,79,32,525,50,10,0,525,525,Auto,Deaths Hand,Demonflare
+Darius,Tank,Noxus,730,0.68,65,36,0,0,20,325,25,5,1,730,325,Auto,Apprehend,Guillotine
+Draven,Ranger,Noxus,485,0.69,80,27,15,0,29,250,15,20,0,485,250,Auto,Spinning Axe,Blood Rush

@@ -10,9 +10,6 @@ class Team {
   private ArrayList<Champion> championPool = new ArrayList<Champion>();
   private ArrayList<Item> itemPool = new ArrayList();
   private String playerName;
-
-    //used to determine which champ is in play right now using index
-  private int currentChamp=0;
   
   Team(String name) throws Exception{
     playerName=name;
@@ -29,27 +26,7 @@ class Team {
   public String getName(){
     return playerName;
   }
-
-  public Champion getCurrentChamp (){
-    return championPool.get(currentChamp);
-  }
-
-  //Setters
-
-  public void setCurrentChamp(String champName){
-
-    for(int i=0 ; i<championPool.size() ; i++){
-
-      if(champName == championPool.get(i).getName()){
-        currentChamp = i;
-      }
-
-    }
-
-  }
-
-  //Methods
-
+  
   // Adds a champion to the team
   public void addChamp(Champion champion) {
     if (championPool.size() < 3) {
@@ -69,14 +46,15 @@ class Team {
     
     while((helper = reader.readLine())!=null){
       
-      if(helper.split(",")[1]==null){
+      if(helper.split(",")[0]==null){
+        
        itemPool.add(new Item( helper.split(",")[0]));
       }
       
     } 
     
   }
-
+  
   public void useItem (String itemName){
 
     //Variable used ot  help specify which item in pool is being reffered to

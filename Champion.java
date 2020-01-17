@@ -7,16 +7,16 @@ import java.util.*;
 
 public class  Champion {
   // Initialize protected int fields (stats):
-  protected static String name;
-  protected static String tribe;
-
+  protected String name;
+  protected String tribe;
+  protected String type;
+  
   //Array to stor names of all stats
   private String[] statNames = {"Health","Attack Speed","Attack Damage","Armor","Crit","Magic Damage","Magic Resistance",
   "Mana","Mana Regen","Movement Speed","Tenacity","maxHealth","maxMana"};
 
   //Array to store values of all coresponding stats
   private double[] statValues = new double[13];
-
   
   // Initialize private booleans (effects):
   private boolean stunned = false;
@@ -26,8 +26,9 @@ public class  Champion {
     
   }
   
-  public Champion(String champName, String champTribe) {
+  public Champion(String champName, String champType, String champTribe) {
     name = champName;
+    type = champType;
     tribe = champTribe;
   } 
 
@@ -82,11 +83,11 @@ public class  Champion {
   }
 
   public double getMaxHealth(){
-    return statValues[12];
+    return statValues[11];
   }
 
   public double getMaxMana(){
-    return statValues[13];
+    return statValues[12];
   }
 
   public String getTribe() {
@@ -203,10 +204,10 @@ public class  Champion {
   //Methods
 
   public String toString() {
-    return "Name: " + name + "\nTribe: " +tribe + "\nHealth: " + statValues[12]
+    return "Name: " + name + "\nTribe: " +tribe + "\nHealth: " + statValues[1]
            + "\nAttack Speed: " + statValues[1] + "\nAttack Damage: " + statValues[2] +
            "\nArmor: " + statValues[3] + "\nCrit: " + statValues[4] + "\nMagic Damage: " + statValues[5]
-           + "\nMagic Res: " + statValues[6] + "\nMana: " + statValues[13] + "\nMana Regen: " + statValues[8]
+           + "\nMagic Res: " + statValues[6] + "\nMana: " + statValues[7] + "\nMana Regen: " + statValues[8]
            + "\nMove Speed: " + statValues[9] + "\nTenacity: " + statValues[10];
   }
 
