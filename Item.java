@@ -5,7 +5,7 @@ import java.io.*;
 
 class Item {
   //Checks if item has been used already
-  boolean used=false;
+  private boolean used=false;
 
   //Name of item
   private String name;
@@ -27,13 +27,14 @@ class Item {
     
     return name;
   }
+  public String[][] getToChange() {
+    return toChange;
+  }
   
   //Getter/method for "used" boolean to check if item has been used already
   public boolean isUsed(){
     return used;
   }
-  
-  
   
   //Applying the items stats to the champion
   public void apply(Champion champ){
@@ -77,7 +78,7 @@ class Item {
     BufferedReader reader=new BufferedReader(new FileReader(file));
     
     //String to be used to help read csv file
-    String helper;
+    String helper = "";
     
     //While file isnt blank
     while ((helper=reader.readLine())!=null){
@@ -97,18 +98,6 @@ class Item {
     reader.close();
   }
   
-  //Testingngngngnggnngnngngngnggn  
-  //Delete when submiting dkedmadklmawlkmdaklmad
-  public void print(){
-    
-    for(int i=0;i<toChange.length;i++) {
-        for (int j = 0; j < toChange[i].length; j++) {
-            System.out.print(toChange[i][j]);
-        }
-        System.out.println();
-    }
-  }
-
   public String toString(){
 
       String toPrint = "";

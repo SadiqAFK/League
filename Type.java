@@ -46,7 +46,7 @@ public class Type extends Champion {
     }
     
     if (champion.getTribe() == TANK) { // If tank
-      if (champion.getHealth() < champion.getHealth() / 2) { // If health is below 50%
+      if (champion.getHealth() < champion.getMaxHealth() / 2) { // If health is below 50%
         return belowFifty = true;
       }
       else {

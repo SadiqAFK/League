@@ -15,7 +15,7 @@ class Team {
     playerName=name;
     
     //fills item pool for team once team is made
-    this.fillItemPool();
+    fillItemPool();
   }
   
   // Getters
@@ -30,28 +30,19 @@ class Team {
   public ArrayList<Item> getItemPool() {
     return itemPool;
   }
-  // Adds a champion to the team
-  public void addChamp(Champion champion) {
-    if (championPool.size() < 3) {
-      championPool.add(champion);
-    }
-    else if (championPool.size() > 3) {
-      System.out.println("You cannot select any more champions.");
-    }
-  }
-  
   //Adds a copy of each item to a bank to be used
-  private void fillItemPool()  throws Exception {
-    File file =new File("League items.csv");
+  public void fillItemPool()  throws Exception {
+    File file = new File("League items.csv");
     BufferedReader reader = new BufferedReader(new FileReader(file));
     
-    String helper;
+    String helper = "";
     
     while((helper = reader.readLine())!=null){
       
       if(helper.split(",")[0]==null){
         
-       itemPool.add(new Item( helper.split(",")[0]));
+       itemPool.add(new Item(helper.split(",")[0]));
+       System.out.println(itemPool.get(0));
       }
       
     } 
@@ -61,9 +52,9 @@ class Team {
   public void useItem (String itemName, Champion champion){
 
     //Variable used to  help specify which item in pool is being reffered to
-    int helper=0;
+    int helper = 0;
 
-    for(int i=0; i< itemPool.size(); i++){
+    for(int i = 0; i < itemPool.size(); i++){
 
       if(itemPool.get(i).getName().equals(itemName)){
         helper = i;
@@ -77,11 +68,8 @@ class Team {
     itemPool.remove(helper);
   }
   
-  //Regenerate mana for all champions on team
-  public void regen (){
-
-    for(int i=0; i<championPool.size(); i++){
-      championPool.get(i).regen();
-    }
+  //Regenerate mana for champ on board
+  public void regen (Champion champ){
+    champ.setMana(champ.getMana() + 50);
   }
 }
